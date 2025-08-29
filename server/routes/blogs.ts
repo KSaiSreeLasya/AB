@@ -1,4 +1,5 @@
 import { RequestHandler } from "express";
+import { supabase } from "../lib/supabase";
 
 interface BlogPost {
   id: string;
@@ -16,8 +17,8 @@ interface BlogPost {
   updated_at: string;
 }
 
-// Mock data storage - In production, use a real database
-let blogPosts: BlogPost[] = [
+// Default blog posts for initial setup
+const defaultBlogPosts: BlogPost[] = [
   {
     id: "1",
     title: "The Future of VLSI Design and Semiconductor Technology",
