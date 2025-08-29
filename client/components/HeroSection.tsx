@@ -98,14 +98,14 @@ export default function HeroSection() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-tech-blue mb-2">
-                    25+
+                    50+
                   </div>
                   <div className="text-muted-foreground">
                     Projects Delivered
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-coral mb-2">50+</div>
+                  <div className="text-3xl font-bold text-coral mb-2">25+</div>
                   <div className="text-muted-foreground">Happy Clients</div>
                 </div>
                 <div className="text-center">
