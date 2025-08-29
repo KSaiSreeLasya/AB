@@ -152,7 +152,7 @@ export default function AdminDashboard() {
   const [showJobEditor, setShowJobEditor] = useState(false);
   const [editingJob, setEditingJob] = useState<JobPosting | null>(null);
 
-  const ADMIN_PASSWORD = "admin2024";
+  const ADMIN_PASSWORD = "Asspl@3636";
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
