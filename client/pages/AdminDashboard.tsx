@@ -118,6 +118,7 @@ export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [applications, setApplications] = useState<Application[]>([]);
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [resumeUploads, setResumeUploads] = useState<ResumeUpload[]>([]);
@@ -176,7 +177,7 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      console.log("��� Starting data fetch from Supabase...");
+      console.log("🔄 Starting data fetch from Supabase...");
 
       // Fetch applications
       console.log("📋 Fetching job applications...");
@@ -229,7 +230,7 @@ export default function AdminDashboard() {
       setGetStartedRequests(getStartedData || []);
 
       // Fetch newsletter subscribers
-      console.log("📧 Fetching newsletter subscribers...");
+      console.log("���� Fetching newsletter subscribers...");
       const { data: newsletterData, error: newsletterError } = await supabase
         .from("newsletter_subscribers")
         .select("*")
