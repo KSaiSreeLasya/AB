@@ -185,8 +185,15 @@ class ServerGoogleSheetsService {
       for (const sheetInfo of sheetsToInit) {
         await this.ensureSheetExists(sheetInfo.name, sheetInfo.headers);
       }
-    } catch (error) {
-      console.error("❌ Error initializing sheets:", error);
+    } catch (error: any) {
+      if (error.message?.includes('invalid_grant') || error.message?.includes('Invalid JWT')) {
+        console.warn("⚠️ Google Sheets authentication failed. Service account may need to be reconfigured. Disabling Google Sheets integration.");
+        this.initialized = false;
+        this.sheets = null;
+        this.auth = null;
+      } else {
+        console.error("❌ Error initializing sheets:", error);
+      }
     }
   }
 
