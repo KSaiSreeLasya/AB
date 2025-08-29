@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import {
   Eye,
+  EyeOff,
   Download,
   Users,
   Briefcase,
@@ -175,7 +176,7 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      console.log("🔄 Starting data fetch from Supabase...");
+      console.log("��� Starting data fetch from Supabase...");
 
       // Fetch applications
       console.log("📋 Fetching job applications...");
