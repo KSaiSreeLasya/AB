@@ -87,6 +87,13 @@ export function createServer() {
   // File download routes
   app.get("/api/files/resume/:filename", downloadResume);
 
+  // Delete API routes for form data
+  app.delete("/api/job-applications/:id", deleteJobApplication);
+  app.delete("/api/contacts/:id", deleteContact);
+  app.delete("/api/get-started/:id", deleteGetStartedRequest);
+  app.delete("/api/newsletter/:id", deleteNewsletterSubscriber);
+  app.delete("/api/resume-uploads/:id", deleteResumeUpload);
+
   // Upload API routes
   app.post("/api/upload/image", uploadMiddleware, uploadImage);
   app.post("/api/upload/resume", resumeUploadMiddleware, uploadResume);
