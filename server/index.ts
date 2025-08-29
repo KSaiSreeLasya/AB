@@ -35,6 +35,13 @@ import {
   syncNewsletterSubscription,
   getSyncStatus,
 } from "./routes/sync";
+import {
+  deleteJobApplication,
+  deleteContact,
+  deleteGetStartedRequest,
+  deleteNewsletterSubscriber,
+  deleteResumeUpload,
+} from "./routes/delete";
 
 export function createServer() {
   const app = express();
