@@ -152,7 +152,7 @@ export default function AdminDashboard() {
   const [showJobEditor, setShowJobEditor] = useState(false);
   const [editingJob, setEditingJob] = useState<JobPosting | null>(null);
 
-  const ADMIN_PASSWORD = "admin2024";
+  const ADMIN_PASSWORD = "Asspl@3636";
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -404,7 +404,9 @@ export default function AdminDashboard() {
       job.title.toLowerCase().includes(filter.toLowerCase()) ||
       job.department.toLowerCase().includes(filter.toLowerCase()) ||
       job.location.toLowerCase().includes(filter.toLowerCase()) ||
-      job.skills_required.some((skill) => skill.toLowerCase().includes(filter.toLowerCase())),
+      job.skills_required.some((skill) =>
+        skill.toLowerCase().includes(filter.toLowerCase()),
+      ),
   );
 
   // Blog management functions
@@ -581,6 +583,136 @@ export default function AdminDashboard() {
       }
     } catch (error) {
       console.error("Error updating job status:", error);
+    }
+  };
+
+  // Delete functions for form data
+  const deleteJobApplication = async (id: string) => {
+    if (confirm("Are you sure you want to delete this job application?")) {
+      try {
+        const response = await fetch(`/api/job-applications/${id}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            setApplications((prev) => prev.filter((app) => app.id !== id));
+          }
+        }
+      } catch (error) {
+        console.error("Error deleting job application:", error);
+        alert("Error deleting job application. Please try again.");
+      }
+    }
+  };
+
+  const deleteContact = async (id: string) => {
+    if (confirm("Are you sure you want to delete this contact message?")) {
+      try {
+        const response = await fetch(`/api/contacts/${id}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            setContacts((prev) => prev.filter((contact) => contact.id !== id));
+          }
+        }
+      } catch (error) {
+        console.error("Error deleting contact:", error);
+        alert("Error deleting contact. Please try again.");
+      }
+    }
+  };
+
+  const deleteGetStartedRequest = async (id: string) => {
+    if (confirm("Are you sure you want to delete this get started request?")) {
+      try {
+        const response = await fetch(`/api/get-started/${id}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            setGetStartedRequests((prev) =>
+              prev.filter((request) => request.id !== id),
+            );
+          }
+        }
+      } catch (error) {
+        console.error("Error deleting get started request:", error);
+        alert("Error deleting get started request. Please try again.");
+      }
+    }
+  };
+
+  const deleteNewsletterSubscriber = async (id: string) => {
+    if (
+      confirm("Are you sure you want to delete this newsletter subscriber?")
+    ) {
+      try {
+        const response = await fetch(`/api/newsletter/${id}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            setNewsletterSubscribers((prev) =>
+              prev.filter((subscriber) => subscriber.id !== id),
+            );
+          }
+        }
+      } catch (error) {
+        console.error("Error deleting newsletter subscriber:", error);
+        alert("Error deleting newsletter subscriber. Please try again.");
+      }
+    }
+  };
+
+  const deleteResumeUpload = async (id: string, source: string) => {
+    if (confirm("Are you sure you want to delete this resume upload?")) {
+      try {
+        if (source === "job_application") {
+          // Delete from job applications table
+          const response = await fetch(`/api/job-applications/${id}`, {
+            method: "DELETE",
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            if (result.success) {
+              setApplications((prev) => prev.filter((app) => app.id !== id));
+              setResumeUploads((prev) =>
+                prev.filter((resume) => resume.id !== id),
+              );
+            }
+          }
+        } else {
+          // Delete from resume uploads table
+          const response = await fetch(`/api/resume-uploads/${id}`, {
+            method: "DELETE",
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            if (result.success) {
+              setActualResumeUploads((prev) =>
+                prev.filter((resume) => resume.id !== id),
+              );
+              setResumeUploads((prev) =>
+                prev.filter((resume) => resume.id !== id),
+              );
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error deleting resume upload:", error);
+        alert("Error deleting resume upload. Please try again.");
+      }
     }
   };
 
@@ -939,7 +1071,10 @@ export default function AdminDashboard() {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-foreground">
-                    {jobPostings.filter((job) => job.status === "active").length}
+                    {
+                      jobPostings.filter((job) => job.status === "active")
+                        .length
+                    }
                   </h3>
                   <p className="text-foreground/70">Active Job Postings</p>
                 </div>
@@ -1109,7 +1244,7 @@ export default function AdminDashboard() {
                       filteredResumeUploads.length === 0
                     }
                   >
-                    Export All (2 Sheets)
+                    Export All (5 Sheets)
                   </button>
                 </div>
               </div>
@@ -1219,6 +1354,13 @@ export default function AdminDashboard() {
                             >
                               <Eye className="w-4 h-4" />
                             </button>
+                            <button
+                              onClick={() => deleteJobApplication(app.id)}
+                              className="p-2 bg-red-500/10 text-red-500 rounded-lg hover:bg-red-500/20 transition-colors"
+                              title="Delete Application"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
                           </div>
                         </td>
                       </tr>
@@ -1288,13 +1430,22 @@ export default function AdminDashboard() {
                           {new Date(contact.created_at).toLocaleDateString()}
                         </td>
                         <td className="px-6 py-4">
-                          <button
-                            onClick={() => openModal(contact, "contact")}
-                            className="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors"
-                            title="View Details"
-                          >
-                            <Eye className="w-4 h-4" />
-                          </button>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => openModal(contact, "contact")}
+                              className="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors"
+                              title="View Details"
+                            >
+                              <Eye className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => deleteContact(contact.id)}
+                              className="p-2 bg-red-500/10 text-red-500 rounded-lg hover:bg-red-500/20 transition-colors"
+                              title="Delete Contact"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -1646,14 +1797,16 @@ export default function AdminDashboard() {
                               </div>
                               {job.skills_required.length > 0 && (
                                 <div className="flex flex-wrap gap-1 mt-1">
-                                  {job.skills_required.slice(0, 3).map((skill, index) => (
-                                    <span
-                                      key={index}
-                                      className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded"
-                                    >
-                                      {skill}
-                                    </span>
-                                  ))}
+                                  {job.skills_required
+                                    .slice(0, 3)
+                                    .map((skill, index) => (
+                                      <span
+                                        key={index}
+                                        className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded"
+                                      >
+                                        {skill}
+                                      </span>
+                                    ))}
                                   {job.skills_required.length > 3 && (
                                     <span className="text-xs text-muted-foreground">
                                       +{job.skills_required.length - 3} more
@@ -1677,7 +1830,9 @@ export default function AdminDashboard() {
                           <td className="px-6 py-4">
                             <select
                               value={job.status}
-                              onChange={(e) => updateJobStatus(job.id, e.target.value)}
+                              onChange={(e) =>
+                                updateJobStatus(job.id, e.target.value)
+                              }
                               className={`px-2 py-1 text-xs rounded-full border-0 font-medium ${
                                 job.status === "active"
                                   ? "bg-green-100 text-green-800"
@@ -2228,7 +2383,8 @@ export default function AdminDashboard() {
                         Experience Level
                       </label>
                       <p className="text-foreground">
-                        {(selectedItem as JobPosting).experience_level || "Not specified"}
+                        {(selectedItem as JobPosting).experience_level ||
+                          "Not specified"}
                       </p>
                     </div>
                     <div>
@@ -2236,7 +2392,8 @@ export default function AdminDashboard() {
                         Salary Range
                       </label>
                       <p className="text-foreground">
-                        {(selectedItem as JobPosting).salary_range || "Not specified"}
+                        {(selectedItem as JobPosting).salary_range ||
+                          "Not specified"}
                       </p>
                     </div>
                   </div>
@@ -2246,7 +2403,9 @@ export default function AdminDashboard() {
                         Posted Date
                       </label>
                       <p className="text-foreground">
-                        {new Date((selectedItem as JobPosting).posted_date).toLocaleDateString()}
+                        {new Date(
+                          (selectedItem as JobPosting).posted_date,
+                        ).toLocaleDateString()}
                       </p>
                     </div>
                     <div>
@@ -2255,7 +2414,11 @@ export default function AdminDashboard() {
                       </label>
                       <p className="text-foreground">
                         {(selectedItem as JobPosting).application_deadline
-                          ? new Date((selectedItem as JobPosting).application_deadline!).toLocaleDateString()
+                          ? new Date(
+                              (
+                                selectedItem as JobPosting
+                              ).application_deadline!,
+                            ).toLocaleDateString()
                           : "No deadline specified"}
                       </p>
                     </div>
@@ -2265,14 +2428,16 @@ export default function AdminDashboard() {
                       Skills Required
                     </label>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      {(selectedItem as JobPosting).skills_required.map((skill, index) => (
-                        <span
-                          key={index}
-                          className="px-2 py-1 bg-muted text-muted-foreground text-sm rounded"
-                        >
-                          {skill}
-                        </span>
-                      ))}
+                      {(selectedItem as JobPosting).skills_required.map(
+                        (skill, index) => (
+                          <span
+                            key={index}
+                            className="px-2 py-1 bg-muted text-muted-foreground text-sm rounded"
+                          >
+                            {skill}
+                          </span>
+                        ),
+                      )}
                     </div>
                   </div>
                   <div>
