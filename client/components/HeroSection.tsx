@@ -98,7 +98,7 @@ export default function HeroSection() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-tech-blue mb-2">
-                    100+
+                    25+
                   </div>
                   <div className="text-muted-foreground">
                     Projects Delivered
