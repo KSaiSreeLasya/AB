@@ -186,8 +186,13 @@ class ServerGoogleSheetsService {
         await this.ensureSheetExists(sheetInfo.name, sheetInfo.headers);
       }
     } catch (error: any) {
-      if (error.message?.includes('invalid_grant') || error.message?.includes('Invalid JWT')) {
-        console.warn("⚠️ Google Sheets authentication failed. Service account may need to be reconfigured. Disabling Google Sheets integration.");
+      if (
+        error.message?.includes("invalid_grant") ||
+        error.message?.includes("Invalid JWT")
+      ) {
+        console.warn(
+          "⚠️ Google Sheets authentication failed. Service account may need to be reconfigured. Disabling Google Sheets integration.",
+        );
         this.initialized = false;
         this.sheets = null;
         this.auth = null;
@@ -221,8 +226,13 @@ class ServerGoogleSheetsService {
       }
     } catch (error: any) {
       // Handle authentication errors specifically
-      if (error.message?.includes('invalid_grant') || error.message?.includes('Invalid JWT')) {
-        console.warn(`⚠️ Authentication failed for sheet ${sheetName}. Skipping Google Sheets initialization.`);
+      if (
+        error.message?.includes("invalid_grant") ||
+        error.message?.includes("Invalid JWT")
+      ) {
+        console.warn(
+          `⚠️ Authentication failed for sheet ${sheetName}. Skipping Google Sheets initialization.`,
+        );
         throw error; // Re-throw to be caught by initializeSheets
       }
 
@@ -259,8 +269,13 @@ class ServerGoogleSheetsService {
 
           console.log(`✅ Created sheet with headers: ${sheetName}`);
         } catch (createError: any) {
-          if (createError.message?.includes('invalid_grant') || createError.message?.includes('Invalid JWT')) {
-            console.warn(`⚠️ Authentication failed while creating sheet ${sheetName}.`);
+          if (
+            createError.message?.includes("invalid_grant") ||
+            createError.message?.includes("Invalid JWT")
+          ) {
+            console.warn(
+              `⚠️ Authentication failed while creating sheet ${sheetName}.`,
+            );
             throw createError;
           }
           console.error(`❌ Error creating sheet ${sheetName}:`, createError);
