@@ -1417,13 +1417,22 @@ export default function AdminDashboard() {
                           {new Date(contact.created_at).toLocaleDateString()}
                         </td>
                         <td className="px-6 py-4">
-                          <button
-                            onClick={() => openModal(contact, "contact")}
-                            className="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors"
-                            title="View Details"
-                          >
-                            <Eye className="w-4 h-4" />
-                          </button>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => openModal(contact, "contact")}
+                              className="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors"
+                              title="View Details"
+                            >
+                              <Eye className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => deleteContact(contact.id)}
+                              className="p-2 bg-red-500/10 text-red-500 rounded-lg hover:bg-red-500/20 transition-colors"
+                              title="Delete Contact"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
