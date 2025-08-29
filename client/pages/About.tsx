@@ -251,18 +251,18 @@ export default function About() {
 
   const achievements = [
     {
-      number: "500+",
+      number: "50+",
       label: "Projects Completed",
       icon: <Target className="w-8 h-8" />,
     },
     {
-      number: "50+",
+      number: "25+",
       label: "Happy Clients",
       icon: <Users className="w-8 h-8" />,
     },
     {
       number: "15+",
-      label: "Years Experience",
+      label: "Yearsof Staff Experience",
       icon: <Award className="w-8 h-8" />,
     },
     {
