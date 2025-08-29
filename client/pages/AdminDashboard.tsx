@@ -584,6 +584,128 @@ export default function AdminDashboard() {
     }
   };
 
+  // Delete functions for form data
+  const deleteJobApplication = async (id: string) => {
+    if (confirm("Are you sure you want to delete this job application?")) {
+      try {
+        const response = await fetch(`/api/job-applications/${id}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            setApplications((prev) => prev.filter((app) => app.id !== id));
+          }
+        }
+      } catch (error) {
+        console.error("Error deleting job application:", error);
+        alert("Error deleting job application. Please try again.");
+      }
+    }
+  };
+
+  const deleteContact = async (id: string) => {
+    if (confirm("Are you sure you want to delete this contact message?")) {
+      try {
+        const response = await fetch(`/api/contacts/${id}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            setContacts((prev) => prev.filter((contact) => contact.id !== id));
+          }
+        }
+      } catch (error) {
+        console.error("Error deleting contact:", error);
+        alert("Error deleting contact. Please try again.");
+      }
+    }
+  };
+
+  const deleteGetStartedRequest = async (id: string) => {
+    if (confirm("Are you sure you want to delete this get started request?")) {
+      try {
+        const response = await fetch(`/api/get-started/${id}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            setGetStartedRequests((prev) =>
+              prev.filter((request) => request.id !== id)
+            );
+          }
+        }
+      } catch (error) {
+        console.error("Error deleting get started request:", error);
+        alert("Error deleting get started request. Please try again.");
+      }
+    }
+  };
+
+  const deleteNewsletterSubscriber = async (id: string) => {
+    if (confirm("Are you sure you want to delete this newsletter subscriber?")) {
+      try {
+        const response = await fetch(`/api/newsletter/${id}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            setNewsletterSubscribers((prev) =>
+              prev.filter((subscriber) => subscriber.id !== id)
+            );
+          }
+        }
+      } catch (error) {
+        console.error("Error deleting newsletter subscriber:", error);
+        alert("Error deleting newsletter subscriber. Please try again.");
+      }
+    }
+  };
+
+  const deleteResumeUpload = async (id: string, source: string) => {
+    if (confirm("Are you sure you want to delete this resume upload?")) {
+      try {
+        if (source === "job_application") {
+          // Delete from job applications table
+          const response = await fetch(`/api/job-applications/${id}`, {
+            method: "DELETE",
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            if (result.success) {
+              setApplications((prev) => prev.filter((app) => app.id !== id));
+              setResumeUploads((prev) => prev.filter((resume) => resume.id !== id));
+            }
+          }
+        } else {
+          // Delete from resume uploads table
+          const response = await fetch(`/api/resume-uploads/${id}`, {
+            method: "DELETE",
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            if (result.success) {
+              setActualResumeUploads((prev) => prev.filter((resume) => resume.id !== id));
+              setResumeUploads((prev) => prev.filter((resume) => resume.id !== id));
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error deleting resume upload:", error);
+        alert("Error deleting resume upload. Please try again.");
+      }
+    }
+  };
+
   // Export functions
   const exportToCSV = (data: any[], filename: string) => {
     if (data.length === 0) return;
