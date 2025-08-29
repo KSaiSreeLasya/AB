@@ -230,7 +230,7 @@ export default function AdminDashboard() {
       setGetStartedRequests(getStartedData || []);
 
       // Fetch newsletter subscribers
-      console.log("���� Fetching newsletter subscribers...");
+      console.log("📧 Fetching newsletter subscribers...");
       const { data: newsletterData, error: newsletterError } = await supabase
         .from("newsletter_subscribers")
         .select("*")
@@ -902,14 +902,27 @@ export default function AdminDashboard() {
 
               <form onSubmit={handlePasswordSubmit} className="space-y-4">
                 <div>
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter admin password"
-                    className="w-full px-4 py-3 border border-border-subtle rounded-lg bg-background/50 text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary"
-                    required
-                  />
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="Enter admin password"
+                      className="w-full px-4 py-3 pr-12 border border-border-subtle rounded-lg bg-background/50 text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground/50 hover:text-foreground transition-colors"
+                    >
+                      {showPassword ? (
+                        <EyeOff className="w-5 h-5" />
+                      ) : (
+                        <Eye className="w-5 h-5" />
+                      )}
+                    </button>
+                  </div>
                   {passwordError && (
                     <p className="text-red-500 text-sm mt-2">{passwordError}</p>
                   )}
