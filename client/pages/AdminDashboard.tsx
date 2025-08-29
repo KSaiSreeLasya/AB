@@ -1231,7 +1231,7 @@ export default function AdminDashboard() {
                       filteredResumeUploads.length === 0
                     }
                   >
-                    Export All (2 Sheets)
+                    Export All (5 Sheets)
                   </button>
                 </div>
               </div>
@@ -1494,24 +1494,15 @@ export default function AdminDashboard() {
                           {new Date(request.created_at).toLocaleDateString()}
                         </td>
                         <td className="px-6 py-4">
-                          <div className="flex gap-2">
-                            <button
-                              onClick={() =>
-                                openModal(request as any, "getstarted" as any)
-                              }
-                              className="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors"
-                              title="View Details"
-                            >
-                              <Eye className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={() => deleteGetStartedRequest(request.id)}
-                              className="p-2 bg-red-500/10 text-red-500 rounded-lg hover:bg-red-500/20 transition-colors"
-                              title="Delete Request"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
-                          </div>
+                          <button
+                            onClick={() =>
+                              openModal(request as any, "getstarted" as any)
+                            }
+                            className="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors"
+                            title="View Details"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
                         </td>
                       </tr>
                     ))}
@@ -1571,24 +1562,15 @@ export default function AdminDashboard() {
                           ).toLocaleDateString()}
                         </td>
                         <td className="px-6 py-4">
-                          <div className="flex gap-2">
-                            <button
-                              onClick={() =>
-                                openModal(subscriber as any, "newsletter" as any)
-                              }
-                              className="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors"
-                              title="View Details"
-                            >
-                              <Eye className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={() => deleteNewsletterSubscriber(subscriber.id)}
-                              className="p-2 bg-red-500/10 text-red-500 rounded-lg hover:bg-red-500/20 transition-colors"
-                              title="Delete Subscriber"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
-                          </div>
+                          <button
+                            onClick={() =>
+                              openModal(subscriber as any, "newsletter" as any)
+                            }
+                            className="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors"
+                            title="View Details"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
                         </td>
                       </tr>
                     ))}
@@ -1960,13 +1942,6 @@ export default function AdminDashboard() {
                               title="View Details"
                             >
                               <Eye className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={() => deleteResumeUpload(resume.id, (resume as any).source || "direct_upload")}
-                              className="p-2 bg-red-500/10 text-red-500 rounded-lg hover:bg-red-500/20 transition-colors"
-                              title="Delete Resume"
-                            >
-                              <Trash2 className="w-4 h-4" />
                             </button>
                           </div>
                         </td>
