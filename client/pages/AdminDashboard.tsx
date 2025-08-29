@@ -1571,15 +1571,24 @@ export default function AdminDashboard() {
                           ).toLocaleDateString()}
                         </td>
                         <td className="px-6 py-4">
-                          <button
-                            onClick={() =>
-                              openModal(subscriber as any, "newsletter" as any)
-                            }
-                            className="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors"
-                            title="View Details"
-                          >
-                            <Eye className="w-4 h-4" />
-                          </button>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() =>
+                                openModal(subscriber as any, "newsletter" as any)
+                              }
+                              className="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors"
+                              title="View Details"
+                            >
+                              <Eye className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => deleteNewsletterSubscriber(subscriber.id)}
+                              className="p-2 bg-red-500/10 text-red-500 rounded-lg hover:bg-red-500/20 transition-colors"
+                              title="Delete Subscriber"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
