@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { supabase } from "../services/googleSheetsService";
+import { supabase } from "../lib/supabase";
 
 // Delete job application
 export const deleteJobApplication: RequestHandler = async (req, res) => {
