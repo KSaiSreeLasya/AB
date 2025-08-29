@@ -262,7 +262,7 @@ export default function About() {
     },
     {
       number: "15+",
-      label: "Yearsof Staff Experience",
+      label: "Years of Staff Experience",
       icon: <Award className="w-8 h-8" />,
     },
     {
