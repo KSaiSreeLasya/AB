@@ -220,6 +220,12 @@ class ServerGoogleSheetsService {
         console.log(`✅ Added headers to sheet: ${sheetName}`);
       }
     } catch (error: any) {
+      // Handle authentication errors specifically
+      if (error.message?.includes('invalid_grant') || error.message?.includes('Invalid JWT')) {
+        console.warn(`⚠️ Authentication failed for sheet ${sheetName}. Skipping Google Sheets initialization.`);
+        throw error; // Re-throw to be caught by initializeSheets
+      }
+
       // If sheet doesn't exist, create it
       if (
         error.code === 400 &&
@@ -252,7 +258,11 @@ class ServerGoogleSheetsService {
           });
 
           console.log(`✅ Created sheet with headers: ${sheetName}`);
-        } catch (createError) {
+        } catch (createError: any) {
+          if (createError.message?.includes('invalid_grant') || createError.message?.includes('Invalid JWT')) {
+            console.warn(`⚠️ Authentication failed while creating sheet ${sheetName}.`);
+            throw createError;
+          }
           console.error(`❌ Error creating sheet ${sheetName}:`, createError);
         }
       } else {
