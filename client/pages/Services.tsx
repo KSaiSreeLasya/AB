@@ -208,23 +208,45 @@ export default function Services() {
             </div>
 
             <Tabs defaultValue="semiconductors" className="w-full">
-              <TabsList className="grid w-full grid-cols-5 mb-12 h-auto p-2 bg-card border border-border-subtle">
-                <TabsTrigger
-                  value="semiconductors"
-                  className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-3 px-6 rounded-lg font-semibold"
-                >
-                  <Cpu className="w-4 h-4 mr-2" />
-                  Semiconductors
-                </TabsTrigger>
-                <TabsTrigger
-                  value="embedded"
-                  className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-3 px-6 rounded-lg font-semibold"
-                >
-                  <Settings className="w-4 h-4 mr-2" />
-                  Embedded services
-                </TabsTrigger>
-               
-              </TabsList>
+              <div className="flex justify-center mb-12">
+                <TabsList className="grid grid-cols-5 h-auto p-3 bg-card border border-border-subtle rounded-xl max-w-5xl w-full">
+                  <TabsTrigger
+                    value="semiconductors"
+                    className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-4 px-6 rounded-lg font-semibold text-sm"
+                  >
+                    <Cpu className="w-5 h-5 mr-2" />
+                    Semiconductors
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="embedded"
+                    className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-4 px-6 rounded-lg font-semibold text-sm"
+                  >
+                    <Settings className="w-5 h-5 mr-2" />
+                    Embedded services
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="automotive"
+                    className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-4 px-6 rounded-lg font-semibold text-sm"
+                  >
+                    <Car className="w-5 h-5 mr-2" />
+                    Automotive
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="retail"
+                    className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-4 px-6 rounded-lg font-semibold text-sm"
+                  >
+                    <ShoppingCart className="w-5 h-5 mr-2" />
+                    Retail
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="telecom"
+                    className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-4 px-6 rounded-lg font-semibold text-sm"
+                  >
+                    <Radio className="w-5 h-5 mr-2" />
+                    Telecom and Network
+                  </TabsTrigger>
+                </TabsList>
+              </div>
 
               <TabsContent value="semiconductors" className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
