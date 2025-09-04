@@ -148,6 +148,7 @@ class EmailService {
         "contact@asocsemi.com,hr@asocsemi.com",
         hrSubject,
         hrHtml,
+        process.env.EMAIL_CC,
       );
       const userResult = await this.sendEmail(email, userSubject, userHtml);
 
@@ -207,6 +208,7 @@ class EmailService {
         "contact@asocsemi.com,hr@asocsemi.com",
         hrSubject,
         hrHtml,
+        process.env.EMAIL_CC,
       );
       const userResult = await this.sendEmail(email, userSubject, userHtml);
 
@@ -274,6 +276,7 @@ class EmailService {
         "contact@asocsemi.com,hr@asocsemi.com",
         hrSubject,
         hrHtml,
+        process.env.EMAIL_CC,
       );
       const userResult = await this.sendEmail(email, userSubject, userHtml);
 
