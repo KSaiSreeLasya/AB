@@ -247,12 +247,11 @@ export default function Services() {
                       name: "RTL Design",
                       features: ["RTL Design", "SystemVerilog", "VHDL", "Functional Modeling"]
                     },
+                    
                     {
-                      name: "Signal flows",
-                      features: ["Signal Processing", "Data Flow Design", "Pipeline Architecture", "Streaming Interfaces"]
+                      name: "Silicon Validation",
+                      features: ["Post-Silicon Validation", "Functional Testing", "Performance Characterization", "Debug and Bring-up"]
                     },
-                    
-                    
                     {
                       name: "Synthesis and STA",
                       features: ["Logic Synthesis", "Timing Analysis", "Constraints Development", "Power Analysis"]
