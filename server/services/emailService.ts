@@ -35,6 +35,7 @@ interface JobApplicationData {
 class EmailService {
   private transporter: nodemailer.Transporter | null = null;
   private isConfigured = false;
+  private disabled = false;
 
   constructor() {
     this.initialize();
@@ -42,6 +43,13 @@ class EmailService {
 
   private initialize() {
     try {
+      // Allow disabling email sends during development/test by setting DISABLE_EMAILS=true
+      if (process.env.DISABLE_EMAILS === 'true') {
+        this.disabled = true;
+        console.log('📧 Email service is disabled via DISABLE_EMAILS');
+        return;
+      }
+
       // Use environment variables for email configuration
       const emailHost = process.env.EMAIL_HOST || "smtp.gmail.com";
       const emailPort = parseInt(process.env.EMAIL_PORT || "587");
@@ -55,7 +63,7 @@ class EmailService {
         return;
       }
 
-      this.transporter = nodemailer.createTransporter({
+      this.transporter = nodemailer.createTransport({
         host: emailHost,
         port: emailPort,
         secure: emailPort === 465, // true for 465, false for other ports
@@ -73,26 +81,38 @@ class EmailService {
   }
 
   getConfigurationStatus(): boolean {
-    return this.isConfigured;
+    return !this.disabled && this.isConfigured;
   }
 
   private async sendEmail(
     to: string,
     subject: string,
     html: string,
+    cc?: string,
   ): Promise<boolean> {
+    if (this.disabled) {
+      console.log('📧 Email sending is disabled (DISABLE_EMAILS=true), skipping.');
+      return true; // pretend success so app flow continues without notifications
+    }
+
     if (!this.transporter || !this.isConfigured) {
       console.log("📧 Email service not configured, skipping email send");
       return false;
     }
 
     try {
-      const info = await this.transporter.sendMail({
+      const mailOptions: any = {
         from: `"ASOCSEMI" <${process.env.EMAIL_USER}>`,
         to,
         subject,
         html,
-      });
+      };
+
+      if (cc) {
+        mailOptions.cc = cc;
+      }
+
+      const info = await this.transporter.sendMail(mailOptions);
 
       console.log("✅ Email sent successfully:", info.messageId);
       return true;
@@ -138,9 +158,10 @@ class EmailService {
 
     try {
       const hrResult = await this.sendEmail(
-        "hr@asocsemi.com",
+        "contact@asocsemi.com,hr@asocsemi.com",
         hrSubject,
         hrHtml,
+        process.env.EMAIL_CC,
       );
       const userResult = await this.sendEmail(email, userSubject, userHtml);
 
@@ -197,9 +218,10 @@ class EmailService {
 
     try {
       const hrResult = await this.sendEmail(
-        "hr@asocsemi.com",
+        "contact@asocsemi.com,hr@asocsemi.com",
         hrSubject,
         hrHtml,
+        process.env.EMAIL_CC,
       );
       const userResult = await this.sendEmail(email, userSubject, userHtml);
 
@@ -264,9 +286,10 @@ class EmailService {
 
     try {
       const hrResult = await this.sendEmail(
-        "hr@asocsemi.com",
+        "contact@asocsemi.com,hr@asocsemi.com",
         hrSubject,
         hrHtml,
+        process.env.EMAIL_CC,
       );
       const userResult = await this.sendEmail(email, userSubject, userHtml);
 
