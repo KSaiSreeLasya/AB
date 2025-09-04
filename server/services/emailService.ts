@@ -81,7 +81,7 @@ class EmailService {
   }
 
   getConfigurationStatus(): boolean {
-    return this.isConfigured;
+    return !this.disabled && this.isConfigured;
   }
 
   private async sendEmail(
