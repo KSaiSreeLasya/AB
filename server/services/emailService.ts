@@ -80,6 +80,7 @@ class EmailService {
     to: string,
     subject: string,
     html: string,
+    cc?: string,
   ): Promise<boolean> {
     if (!this.transporter || !this.isConfigured) {
       console.log("📧 Email service not configured, skipping email send");
@@ -87,12 +88,18 @@ class EmailService {
     }
 
     try {
-      const info = await this.transporter.sendMail({
+      const mailOptions: any = {
         from: `"ASOCSEMI" <${process.env.EMAIL_USER}>`,
         to,
         subject,
         html,
-      });
+      };
+
+      if (cc) {
+        mailOptions.cc = cc;
+      }
+
+      const info = await this.transporter.sendMail(mailOptions);
 
       console.log("✅ Email sent successfully:", info.messageId);
       return true;
