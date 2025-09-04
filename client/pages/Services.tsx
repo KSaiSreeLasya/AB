@@ -294,7 +294,7 @@ export default function Services() {
                    {
                       name: "Verification and Validation",
                       features: ["System Testing", "Compliance Testing", "Performance Validation", "Quality Assurance"]
-                    }
+                    },
                     
                     {
                       name: "CI/CD",
@@ -315,7 +315,7 @@ export default function Services() {
                     {
                       name: "Cyber Security",
                       features: ["Secure Boot", "Encryption Implementation", "Security Protocols", "Vulnerability Assessment"]
-                    },
+                    }
                     
                   ].map((service, index) => (
                     <div
