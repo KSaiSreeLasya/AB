@@ -35,6 +35,7 @@ interface JobApplicationData {
 class EmailService {
   private transporter: nodemailer.Transporter | null = null;
   private isConfigured = false;
+  private disabled = false;
 
   constructor() {
     this.initialize();
