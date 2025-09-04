@@ -60,8 +60,9 @@ function Section({ children, className = "" }: SectionProps) {
   return (
     <div
       ref={ref}
-      className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        } ${className}`}
+      className={`transition-all duration-1000 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      } ${className}`}
     >
       {children}
     </div>
@@ -86,7 +87,6 @@ export default function Services() {
     });
   }, [carouselApi]);
 
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -96,17 +96,18 @@ export default function Services() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <div
-              className={`transition-all duration-1000 ${isVisible
+              className={`transition-all duration-1000 ${
+                isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
-                }`}
+              }`}
             >
               <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
                 Our <span className="text-gradient">Services</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
-                Comprehensive technology solutions across multiple industries designed to drive innovation
-                and accelerate your business growth
+                Comprehensive technology solutions across multiple industries
+                designed to drive innovation and accelerate your business growth
               </p>
             </div>
           </div>
@@ -139,8 +140,12 @@ export default function Services() {
                       <div className="text-tech-blue mb-6 group-hover:scale-110 transition-transform duration-300">
                         <Cpu className="w-16 h-16" />
                       </div>
-                      <h3 className="text-xl font-bold text-foreground mb-2">Semiconductors</h3>
-                      <p className="text-sm text-muted-foreground text-center">Advanced chip design & verification</p>
+                      <h3 className="text-xl font-bold text-foreground mb-2">
+                        Semiconductors
+                      </h3>
+                      <p className="text-sm text-muted-foreground text-center">
+                        Advanced chip design & verification
+                      </p>
                     </div>
                   </CarouselItem>
                   <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
@@ -148,8 +153,12 @@ export default function Services() {
                       <div className="text-tech-blue mb-6 group-hover:scale-110 transition-transform duration-300">
                         <Radio className="w-16 h-16" />
                       </div>
-                      <h3 className="text-xl font-bold text-foreground mb-2">Telecom & Network</h3>
-                      <p className="text-sm text-muted-foreground text-center">Communication infrastructure solutions</p>
+                      <h3 className="text-xl font-bold text-foreground mb-2">
+                        Telecom & Network
+                      </h3>
+                      <p className="text-sm text-muted-foreground text-center">
+                        Communication infrastructure solutions
+                      </p>
                     </div>
                   </CarouselItem>
                   <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
@@ -157,8 +166,12 @@ export default function Services() {
                       <div className="text-tech-blue mb-6 group-hover:scale-110 transition-transform duration-300">
                         <ShoppingCart className="w-16 h-16" />
                       </div>
-                      <h3 className="text-xl font-bold text-foreground mb-2">Retail</h3>
-                      <p className="text-sm text-muted-foreground text-center">Digital transformation solutions</p>
+                      <h3 className="text-xl font-bold text-foreground mb-2">
+                        Retail
+                      </h3>
+                      <p className="text-sm text-muted-foreground text-center">
+                        Digital transformation solutions
+                      </p>
                     </div>
                   </CarouselItem>
                   <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
@@ -166,8 +179,12 @@ export default function Services() {
                       <div className="text-tech-blue mb-6 group-hover:scale-110 transition-transform duration-300">
                         <Car className="w-16 h-16" />
                       </div>
-                      <h3 className="text-xl font-bold text-foreground mb-2">Automotive</h3>
-                      <p className="text-sm text-muted-foreground text-center">Next-generation vehicle electronics</p>
+                      <h3 className="text-xl font-bold text-foreground mb-2">
+                        Automotive
+                      </h3>
+                      <p className="text-sm text-muted-foreground text-center">
+                        Next-generation vehicle electronics
+                      </p>
                     </div>
                   </CarouselItem>
                 </CarouselContent>
@@ -207,7 +224,6 @@ export default function Services() {
                     <Settings className="w-5 h-5 mr-2" />
                     Embedded services
                   </TabsTrigger>
-                 
                 </TabsList>
               </div>
 
@@ -216,54 +232,114 @@ export default function Services() {
                   {[
                     {
                       name: "Analog and Mixed Signal",
-                      features: ["Analog Design", "Mixed Signal Design", "PLL/DLL Design", "Data Converters"]
+                      features: [
+                        "Analog Design",
+                        "Mixed Signal Design",
+                        "PLL/DLL Design",
+                        "Data Converters",
+                      ],
                     },
-                  
+
                     {
                       name: "Design Verification",
-                      features: ["UVM Verification", "Formal Verification", "SystemVerilog Verification", "Coverage Analysis"]
+                      features: [
+                        "UVM Verification",
+                        "Formal Verification",
+                        "SystemVerilog Verification",
+                        "Coverage Analysis",
+                      ],
                     },
                     {
                       name: "Design for Testability (DFT)",
-                      features: ["Scan Chain Design", "BIST Implementation", "JTAG Integration", "Test Pattern Generation"]
+                      features: [
+                        "Scan Chain Design",
+                        "BIST Implementation",
+                        "JTAG Integration",
+                        "Test Pattern Generation",
+                      ],
                     },
                     {
                       name: "FPGA Design",
-                      features: ["FPGA Implementation", "IP Core Development", "DSP Design", "High-Speed Interfaces"]
+                      features: [
+                        "FPGA Implementation",
+                        "IP Core Development",
+                        "DSP Design",
+                        "High-Speed Interfaces",
+                      ],
                     },
                     {
                       name: "Architecture & Silicon Validation",
-                      features: ["Architecture Definition", "Silicon Validation", "Performance Analysis", "Debug Support"]
+                      features: [
+                        "Architecture Definition",
+                        "Silicon Validation",
+                        "Performance Analysis",
+                        "Debug Support",
+                      ],
                     },
                     {
                       name: "Prototyping and Emulation",
-                      features: ["Hardware Prototyping", "FPGA Emulation", "System Modeling", "Early Software Development"]
+                      features: [
+                        "Hardware Prototyping",
+                        "FPGA Emulation",
+                        "System Modeling",
+                        "Early Software Development",
+                      ],
                     },
                     {
                       name: "Physical Design",
-                      features: ["Floor Planning", "Place and Route", "Clock Tree Synthesis", "Power Planning"]
+                      features: [
+                        "Floor Planning",
+                        "Place and Route",
+                        "Clock Tree Synthesis",
+                        "Power Planning",
+                      ],
                     },
                     {
                       name: "RTL Design",
-                      features: ["RTL Design", "SystemVerilog", "VHDL", "Functional Modeling"]
+                      features: [
+                        "RTL Design",
+                        "SystemVerilog",
+                        "VHDL",
+                        "Functional Modeling",
+                      ],
                     },
-                    
+
                     {
                       name: "Silicon Validation",
-                      features: ["Post-Silicon Validation", "Functional Testing", "Performance Characterization", "Debug and Bring-up"]
+                      features: [
+                        "Post-Silicon Validation",
+                        "Functional Testing",
+                        "Performance Characterization",
+                        "Debug and Bring-up",
+                      ],
                     },
                     {
                       name: "Synthesis and STA",
-                      features: ["Logic Synthesis", "Timing Analysis", "Constraints Development", "Power Analysis"]
+                      features: [
+                        "Logic Synthesis",
+                        "Timing Analysis",
+                        "Constraints Development",
+                        "Power Analysis",
+                      ],
                     },
                     {
                       name: "Test and Product Engineering",
-                      features: ["Test Development", "ATE Programming", "Yield Analysis", "Production Testing"]
+                      features: [
+                        "Test Development",
+                        "ATE Programming",
+                        "Yield Analysis",
+                        "Production Testing",
+                      ],
                     },
                     {
                       name: "Product Solutions",
-                      features: ["Custom Solutions", "System Integration", "Product Development", "Technical Consulting"]
-                    }
+                      features: [
+                        "Custom Solutions",
+                        "System Integration",
+                        "Product Development",
+                        "Technical Consulting",
+                      ],
+                    },
                   ].map((service, index) => (
                     <div
                       key={index}
@@ -291,32 +367,61 @@ export default function Services() {
               <TabsContent value="embedded" className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
-                   {
+                    {
                       name: "Verification and Validation",
-                      features: ["System Testing", "Compliance Testing", "Performance Validation", "Quality Assurance"]
+                      features: [
+                        "System Testing",
+                        "Compliance Testing",
+                        "Performance Validation",
+                        "Quality Assurance",
+                      ],
                     },
-                    
+
                     {
                       name: "CI/CD",
-                      features: ["Automated Testing", "Build Pipelines", "Deployment Automation", "Version Control Integration"]
+                      features: [
+                        "Automated Testing",
+                        "Build Pipelines",
+                        "Deployment Automation",
+                        "Version Control Integration",
+                      ],
                     },
                     {
                       name: "Device Drivers",
-                      features: ["Kernel Modules", "Character Drivers", "Block Drivers", "Network Drivers"]
+                      features: [
+                        "Kernel Modules",
+                        "Character Drivers",
+                        "Block Drivers",
+                        "Network Drivers",
+                      ],
                     },
                     {
                       name: "Diagnostics",
-                      features: ["System Health Monitoring", "Error Detection", "Performance Analysis", "Debug Interfaces"]
+                      features: [
+                        "System Health Monitoring",
+                        "Error Detection",
+                        "Performance Analysis",
+                        "Debug Interfaces",
+                      ],
                     },
                     {
                       name: "OS Porting and Customization",
-                      features: ["Linux Kernel Porting", "RTOS Integration", "Custom OS Features", "System Optimization"]
+                      features: [
+                        "Linux Kernel Porting",
+                        "RTOS Integration",
+                        "Custom OS Features",
+                        "System Optimization",
+                      ],
                     },
                     {
                       name: "Cyber Security",
-                      features: ["Secure Boot", "Encryption Implementation", "Security Protocols", "Vulnerability Assessment"]
-                    }
-                    
+                      features: [
+                        "Secure Boot",
+                        "Encryption Implementation",
+                        "Security Protocols",
+                        "Vulnerability Assessment",
+                      ],
+                    },
                   ].map((service, index) => (
                     <div
                       key={index}
@@ -346,20 +451,40 @@ export default function Services() {
                   {[
                     {
                       name: "ADAS Systems",
-                      features: ["Computer Vision", "Sensor Fusion", "Real-time Processing", "Safety Systems"]
+                      features: [
+                        "Computer Vision",
+                        "Sensor Fusion",
+                        "Real-time Processing",
+                        "Safety Systems",
+                      ],
                     },
                     {
                       name: "Electric Vehicle Solutions",
-                      features: ["Battery Management", "Power Electronics", "Charging Systems", "Energy Optimization"]
+                      features: [
+                        "Battery Management",
+                        "Power Electronics",
+                        "Charging Systems",
+                        "Energy Optimization",
+                      ],
                     },
                     {
                       name: "Infotainment Systems",
-                      features: ["HMI Development", "Connectivity Solutions", "Media Processing", "User Experience"]
+                      features: [
+                        "HMI Development",
+                        "Connectivity Solutions",
+                        "Media Processing",
+                        "User Experience",
+                      ],
                     },
                     {
                       name: "Vehicle Communication",
-                      features: ["V2X Communication", "CAN/LIN Networks", "Ethernet Automotive", "Wireless Connectivity"]
-                    }
+                      features: [
+                        "V2X Communication",
+                        "CAN/LIN Networks",
+                        "Ethernet Automotive",
+                        "Wireless Connectivity",
+                      ],
+                    },
                   ].map((service, index) => (
                     <div
                       key={index}
@@ -392,20 +517,40 @@ export default function Services() {
                   {[
                     {
                       name: "E-commerce Solutions",
-                      features: ["Online Store Development", "Payment Integration", "Inventory Management", "Customer Analytics"]
+                      features: [
+                        "Online Store Development",
+                        "Payment Integration",
+                        "Inventory Management",
+                        "Customer Analytics",
+                      ],
                     },
                     {
                       name: "Point of Sale Systems",
-                      features: ["POS Software", "Hardware Integration", "Multi-channel Support", "Real-time Reporting"]
+                      features: [
+                        "POS Software",
+                        "Hardware Integration",
+                        "Multi-channel Support",
+                        "Real-time Reporting",
+                      ],
                     },
                     {
                       name: "Digital Signage",
-                      features: ["Interactive Displays", "Content Management", "Remote Monitoring", "Analytics & Insights"]
+                      features: [
+                        "Interactive Displays",
+                        "Content Management",
+                        "Remote Monitoring",
+                        "Analytics & Insights",
+                      ],
                     },
                     {
                       name: "Supply Chain Technology",
-                      features: ["RFID Solutions", "IoT Sensors", "Logistics Optimization", "Warehouse Management"]
-                    }
+                      features: [
+                        "RFID Solutions",
+                        "IoT Sensors",
+                        "Logistics Optimization",
+                        "Warehouse Management",
+                      ],
+                    },
                   ].map((service, index) => (
                     <div
                       key={index}
@@ -438,20 +583,40 @@ export default function Services() {
                   {[
                     {
                       name: "5G/6G Technologies",
-                      features: ["5G Network Design", "6G Research & Development", "mmWave Solutions", "Massive MIMO"]
+                      features: [
+                        "5G Network Design",
+                        "6G Research & Development",
+                        "mmWave Solutions",
+                        "Massive MIMO",
+                      ],
                     },
                     {
                       name: "Network Infrastructure",
-                      features: ["SDN Solutions", "NFV Implementation", "Edge Computing", "Cloud Networking"]
+                      features: [
+                        "SDN Solutions",
+                        "NFV Implementation",
+                        "Edge Computing",
+                        "Cloud Networking",
+                      ],
                     },
                     {
                       name: "Wireless Communications",
-                      features: ["RF Design", "Antenna Design", "Protocol Stack", "Baseband Processing"]
+                      features: [
+                        "RF Design",
+                        "Antenna Design",
+                        "Protocol Stack",
+                        "Baseband Processing",
+                      ],
                     },
                     {
                       name: "Network Security",
-                      features: ["Cybersecurity Solutions", "Network Monitoring", "Threat Detection", "Security Protocols"]
-                    }
+                      features: [
+                        "Cybersecurity Solutions",
+                        "Network Monitoring",
+                        "Threat Detection",
+                        "Security Protocols",
+                      ],
+                    },
                   ].map((service, index) => (
                     <div
                       key={index}
@@ -483,7 +648,6 @@ export default function Services() {
         </section>
       </Section>
 
-
       {/* CTA Section */}
       <Section>
         <section className="py-20 bg-card-bg">
@@ -493,7 +657,8 @@ export default function Services() {
                 Ready to Transform Your Business?
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
-                Let's discuss how our industry-specific solutions can drive your success
+                Let's discuss how our industry-specific solutions can drive your
+                success
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
