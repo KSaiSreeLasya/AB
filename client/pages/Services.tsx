@@ -192,7 +192,7 @@ export default function Services() {
 
             <Tabs defaultValue="semiconductors" className="w-full">
               <div className="flex justify-center mb-12">
-                <TabsList className="grid grid-cols-5 h-auto p-3 bg-card border border-border-subtle rounded-xl max-w-5xl w-full">
+                <TabsList className="grid grid-cols-2 h-auto p-3 bg-card border border-border-subtle rounded-xl max-w-5xl w-full">
                   <TabsTrigger
                     value="semiconductors"
                     className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-4 px-6 rounded-lg font-semibold text-sm"
