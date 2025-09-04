@@ -34,6 +34,12 @@ import {
   deleteNewsletterSubscriber,
   deleteResumeUpload,
 } from "./routes/delete";
+import {
+  sendContactEmails,
+  sendJobApplicationEmails,
+  sendGetStartedEmails,
+  getEmailServiceStatus,
+} from "./routes/email";
 
 export function createServer() {
   const app = express();
@@ -68,6 +74,12 @@ export function createServer() {
   app.delete("/api/jobs/:id", deleteJob);
   app.patch("/api/jobs/:id/status", updateJobStatus);
 
+
+  // Email notification routes
+  app.post("/api/email/contact", sendContactEmails);
+  app.post("/api/email/job-application", sendJobApplicationEmails);
+  app.post("/api/email/get-started", sendGetStartedEmails);
+  app.get("/api/email/status", getEmailServiceStatus);
 
   // File download routes
   app.get("/api/files/resume/:filename", downloadResume);
