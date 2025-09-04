@@ -43,6 +43,13 @@ class EmailService {
 
   private initialize() {
     try {
+      // Allow disabling email sends during development/test by setting DISABLE_EMAILS=true
+      if (process.env.DISABLE_EMAILS === 'true') {
+        this.disabled = true;
+        console.log('📧 Email service is disabled via DISABLE_EMAILS');
+        return;
+      }
+
       // Use environment variables for email configuration
       const emailHost = process.env.EMAIL_HOST || "smtp.gmail.com";
       const emailPort = parseInt(process.env.EMAIL_PORT || "587");
