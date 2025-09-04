@@ -223,27 +223,7 @@ export default function Services() {
                   <Settings className="w-4 h-4 mr-2" />
                   Embedded services
                 </TabsTrigger>
-                <TabsTrigger
-                  value="automotive"
-                  className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-3 px-6 rounded-lg font-semibold"
-                >
-                  <Car className="w-4 h-4 mr-2" />
-                  Automotive
-                </TabsTrigger>
-                <TabsTrigger
-                  value="retail"
-                  className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-3 px-6 rounded-lg font-semibold"
-                >
-                  <ShoppingCart className="w-4 h-4 mr-2" />
-                  Retail
-                </TabsTrigger>
-                <TabsTrigger
-                  value="telecom"
-                  className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-3 px-6 rounded-lg font-semibold"
-                >
-                  <Radio className="w-4 h-4 mr-2" />
-                  Telecom and Network
-                </TabsTrigger>
+               
               </TabsList>
 
               <TabsContent value="semiconductors" className="space-y-8">
