@@ -218,10 +218,7 @@ export default function Services() {
                       name: "Analog and Mixed Signal",
                       features: ["Analog Design", "Mixed Signal Design", "PLL/DLL Design", "Data Converters"]
                     },
-                    {
-                      name: "Bench Characterization",
-                      features: ["Device Characterization", "Performance Testing", "Parameter Extraction", "Model Validation"]
-                    },
+                  
                     {
                       name: "Design Verification",
                       features: ["UVM Verification", "Formal Verification", "SystemVerilog Verification", "Coverage Analysis"]
@@ -254,10 +251,8 @@ export default function Services() {
                       name: "Signal flows",
                       features: ["Signal Processing", "Data Flow Design", "Pipeline Architecture", "Streaming Interfaces"]
                     },
-                    {
-                      name: "Silicon Validation",
-                      features: ["Post-Silicon Validation", "Functional Testing", "Performance Characterization", "Debug and Bring-up"]
-                    },
+                    
+                    
                     {
                       name: "Synthesis and STA",
                       features: ["Logic Synthesis", "Timing Analysis", "Constraints Development", "Power Analysis"]
