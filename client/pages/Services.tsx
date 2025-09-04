@@ -291,14 +291,11 @@ export default function Services() {
               <TabsContent value="embedded" className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
-                    {
-                      name: "Bare Metal Programming",
-                      features: ["Low-level Hardware Control", "Real-time Systems", "Custom Boot Loaders", "Hardware Abstraction"]
-                    },
-                    {
-                      name: "Board Support Package",
-                      features: ["Hardware Initialization", "Device Tree Configuration", "Platform Drivers", "Board Bring-up"]
-                    },
+                   {
+                      name: "Verification and Validation",
+                      features: ["System Testing", "Compliance Testing", "Performance Validation", "Quality Assurance"]
+                    }
+                    
                     {
                       name: "CI/CD",
                       features: ["Automated Testing", "Build Pipelines", "Deployment Automation", "Version Control Integration"]
@@ -319,10 +316,7 @@ export default function Services() {
                       name: "Cyber Security",
                       features: ["Secure Boot", "Encryption Implementation", "Security Protocols", "Vulnerability Assessment"]
                     },
-                    {
-                      name: "Verification and Validation",
-                      features: ["System Testing", "Compliance Testing", "Performance Validation", "Quality Assurance"]
-                    }
+                    
                   ].map((service, index) => (
                     <div
                       key={index}
