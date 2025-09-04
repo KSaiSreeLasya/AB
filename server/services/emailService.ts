@@ -90,6 +90,11 @@ class EmailService {
     html: string,
     cc?: string,
   ): Promise<boolean> {
+    if (this.disabled) {
+      console.log('📧 Email sending is disabled (DISABLE_EMAILS=true), skipping.');
+      return true; // pretend success so app flow continues without notifications
+    }
+
     if (!this.transporter || !this.isConfigured) {
       console.log("📧 Email service not configured, skipping email send");
       return false;
