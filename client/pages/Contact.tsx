@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
 import Header from "../components/Header";
 
 import { supabase } from "../lib/supabase";
-import { googleSheetsService } from "../services/googleSheets";
+import { emailService } from "../services/emailService";
 import Footer from "../components/Footer";
 
 export default function Contact() {
@@ -46,9 +46,9 @@ export default function Contact() {
 
       if (error) throw error;
 
-      // Sync to Google Sheets in background
-      googleSheetsService.syncContact(contactData).catch((err) => {
-        console.error("Failed to sync contact to Google Sheets:", err);
+      // Send email notifications in background
+      emailService.sendContactEmails(contactData).catch((err) => {
+        console.error("Failed to send contact emails:", err);
       });
 
       setSubmitted(true);

@@ -28,20 +28,18 @@ import {
 } from "./routes/jobs";
 import { downloadResume } from "./routes/files";
 import {
-  syncContact,
-  syncJobApplication,
-  syncGetStartedRequest,
-  syncResumeUpload,
-  syncNewsletterSubscription,
-  getSyncStatus,
-} from "./routes/sync";
-import {
   deleteJobApplication,
   deleteContact,
   deleteGetStartedRequest,
   deleteNewsletterSubscriber,
   deleteResumeUpload,
 } from "./routes/delete";
+import {
+  sendContactEmails,
+  sendJobApplicationEmails,
+  sendGetStartedEmails,
+  getEmailServiceStatus,
+} from "./routes/email";
 
 export function createServer() {
   const app = express();
@@ -76,13 +74,11 @@ export function createServer() {
   app.delete("/api/jobs/:id", deleteJob);
   app.patch("/api/jobs/:id/status", updateJobStatus);
 
-  // Google Sheets sync API routes
-  app.post("/api/sync/contact", syncContact);
-  app.post("/api/sync/job-application", syncJobApplication);
-  app.post("/api/sync/get-started", syncGetStartedRequest);
-  app.post("/api/sync/resume-upload", syncResumeUpload);
-  app.post("/api/sync/newsletter", syncNewsletterSubscription);
-  app.get("/api/sync/status", getSyncStatus);
+  // Email notification routes
+  app.post("/api/email/contact", sendContactEmails);
+  app.post("/api/email/job-application", sendJobApplicationEmails);
+  app.post("/api/email/get-started", sendGetStartedEmails);
+  app.get("/api/email/status", getEmailServiceStatus);
 
   // File download routes
   app.get("/api/files/resume/:filename", downloadResume);

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { X, Upload, Send } from "lucide-react";
 import Swal from "sweetalert2";
 import { supabase } from "../lib/supabase";
-import { googleSheetsService } from "../services/googleSheets";
+import { emailService } from "../services/emailService";
 import { useAuth } from "../contexts/AuthContext";
 
 interface ApplicationModalProps {
@@ -124,9 +124,9 @@ export default function ApplicationModal({
 
       if (error) throw error;
 
-      // Sync to Google Sheets in background
-      googleSheetsService.syncJobApplication(applicationData).catch((err) => {
-        console.error("Failed to sync job application to Google Sheets:", err);
+      // Send email notifications in background
+      emailService.sendJobApplicationEmails(applicationData).catch((err) => {
+        console.error("Failed to send job application emails:", err);
       });
 
       Swal.fire({

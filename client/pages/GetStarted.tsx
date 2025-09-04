@@ -3,7 +3,7 @@ import { ChevronRight, Rocket, Send } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { supabase } from "../lib/supabase";
-import { googleSheetsService } from "../services/googleSheets";
+import { emailService } from "../services/emailService";
 import Swal from "sweetalert2";
 
 interface SectionProps {
@@ -103,12 +103,9 @@ export default function GetStarted() {
 
       if (error) throw error;
 
-      // Sync to Google Sheets in background
-      googleSheetsService.syncGetStartedRequest(requestData).catch((err) => {
-        console.error(
-          "Failed to sync get started request to Google Sheets:",
-          err,
-        );
+      // Send email notifications in background
+      emailService.sendGetStartedEmails(requestData).catch((err) => {
+        console.error("Failed to send get started emails:", err);
       });
 
       Swal.fire({

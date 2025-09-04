@@ -13,7 +13,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ApplicationModal from "../components/ApplicationModal";
 import { supabase } from "../lib/supabase";
-import { googleSheetsService } from "../services/googleSheets";
+import { emailService } from "../services/emailService";
 import Swal from "sweetalert2";
 
 interface SectionProps {
@@ -202,10 +202,21 @@ export default function Careers() {
 
       if (error) throw error;
 
-      // Sync to Google Sheets in background
-      googleSheetsService.syncResumeUpload(resumeData).catch((err) => {
-        console.error("Failed to sync resume upload to Google Sheets:", err);
-      });
+      // Send email notifications in background
+      emailService
+        .sendGetStartedEmails({
+          first_name:
+            resumeFormData.fullName.split(" ")[0] || resumeFormData.fullName,
+          last_name:
+            resumeFormData.fullName.split(" ").slice(1).join(" ") || "",
+          email: resumeFormData.email,
+          phone: resumeFormData.phone,
+          message: `Resume submitted for ${resumeFormData.positionInterested}. Skills: ${resumeFormData.skills}. ${resumeFormData.coverLetter ? "Cover Letter: " + resumeFormData.coverLetter : ""}`,
+          created_at: new Date().toISOString(),
+        })
+        .catch((err) => {
+          console.error("Failed to send resume upload emails:", err);
+        });
 
       Swal.fire({
         title: "Resume Submitted!",

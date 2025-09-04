@@ -19,7 +19,7 @@ import {
 import Header from "../components/Header";
 import BlogEditor from "../components/BlogEditor";
 import JobEditor from "../components/JobEditor";
-import GoogleSheetsWidget from "../components/GoogleSheetsWidget";
+import EmailStatusWidget from "../components/EmailStatusWidget";
 import { useAuth } from "../contexts/AuthContext";
 import { supabase } from "../lib/supabase";
 import { formatErrorMessage } from "../lib/error";
@@ -1082,16 +1082,12 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          {/* Google Sheets Integration Widget */}
+          {/* Email Notifications Status Widget */}
           <div className="mb-6">
-            <GoogleSheetsWidget
+            <EmailStatusWidget
               totalContacts={contacts.length}
               totalApplications={applications.length}
               totalGetStarted={getStartedRequests.length}
-              totalResumes={resumeUploads.length}
-              totalNewsletter={
-                newsletterSubscribers.filter((sub) => sub.is_active).length
-              }
             />
           </div>
 
