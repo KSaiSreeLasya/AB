@@ -171,24 +171,7 @@ export default function Services() {
                     </div>
                   </CarouselItem>
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
               </Carousel>
-
-              {/* Dots navigation */}
-              <div className="flex justify-center space-x-3 mt-8">
-                {[0, 1, 2, 3].map((index) => (
-                  <button
-                    key={index}
-                    onClick={() => carouselApi?.scrollTo(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      selectedIndex === index
-                        ? "bg-tech-blue scale-125"
-                        : "bg-tech-blue/30 hover:bg-tech-blue/60"
-                    }`}
-                  />
-                ))}
-              </div>
             </div>
           </div>
         </section>
@@ -224,7 +207,27 @@ export default function Services() {
                     <Settings className="w-5 h-5 mr-2" />
                     Embedded services
                   </TabsTrigger>
-                 
+                  <TabsTrigger
+                    value="automotive"
+                    className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-4 px-6 rounded-lg font-semibold text-sm"
+                  >
+                    <Car className="w-5 h-5 mr-2" />
+                    Automotive
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="retail"
+                    className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-4 px-6 rounded-lg font-semibold text-sm"
+                  >
+                    <ShoppingCart className="w-5 h-5 mr-2" />
+                    Retail
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="telecom"
+                    className="data-[state=active]:bg-tech-blue data-[state=active]:text-white py-4 px-6 rounded-lg font-semibold text-sm"
+                  >
+                    <Radio className="w-5 h-5 mr-2" />
+                    Telecom and Network
+                  </TabsTrigger>
                 </TabsList>
               </div>
 
@@ -312,27 +315,59 @@ export default function Services() {
               </TabsContent>
 
               <TabsContent value="embedded" className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
-                    "Bare Metal Programming",
-                    "Board Support Package",
-                    "CI/CD",
-                    "Device Drivers",
-                    "Diagnostics",
-                    "OS Porting and Customization",
-                    "Cyber Security",
-                    "Verification and Validation"
+                    {
+                      name: "Bare Metal Programming",
+                      features: ["Low-level Hardware Control", "Real-time Systems", "Custom Boot Loaders", "Hardware Abstraction"]
+                    },
+                    {
+                      name: "Board Support Package",
+                      features: ["Hardware Initialization", "Device Tree Configuration", "Platform Drivers", "Board Bring-up"]
+                    },
+                    {
+                      name: "CI/CD",
+                      features: ["Automated Testing", "Build Pipelines", "Deployment Automation", "Version Control Integration"]
+                    },
+                    {
+                      name: "Device Drivers",
+                      features: ["Kernel Modules", "Character Drivers", "Block Drivers", "Network Drivers"]
+                    },
+                    {
+                      name: "Diagnostics",
+                      features: ["System Health Monitoring", "Error Detection", "Performance Analysis", "Debug Interfaces"]
+                    },
+                    {
+                      name: "OS Porting and Customization",
+                      features: ["Linux Kernel Porting", "RTOS Integration", "Custom OS Features", "System Optimization"]
+                    },
+                    {
+                      name: "Cyber Security",
+                      features: ["Secure Boot", "Encryption Implementation", "Security Protocols", "Vulnerability Assessment"]
+                    },
+                    {
+                      name: "Verification and Validation",
+                      features: ["System Testing", "Compliance Testing", "Performance Validation", "Quality Assurance"]
+                    }
                   ].map((service, index) => (
                     <div
                       key={index}
-                      className="bg-gradient-to-br from-card to-card-bg border border-tech-blue/20 rounded-xl p-6 card-hover group text-center"
+                      className="bg-card border border-border-subtle rounded-xl p-6 card-hover group"
                     >
-                      <div className="text-tech-blue mb-4 flex justify-center">
-                        <Settings className="w-8 h-8" />
-                      </div>
-                      <h3 className="text-lg font-bold text-foreground group-hover:text-tech-blue transition-colors">
-                        {service}
+                      <h3 className="text-lg font-bold text-foreground mb-4 group-hover:text-tech-blue transition-colors">
+                        {service.name}
                       </h3>
+                      <ul className="space-y-2">
+                        {service.features.map((feature, featureIndex) => (
+                          <li
+                            key={featureIndex}
+                            className="text-muted-foreground flex items-center gap-2 text-sm"
+                          >
+                            <div className="w-1.5 h-1.5 bg-coral rounded-full flex-shrink-0"></div>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   ))}
                 </div>
