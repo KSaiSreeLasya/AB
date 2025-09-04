@@ -105,10 +105,7 @@ export default function GetStarted() {
 
       // Send email notifications in background
       emailService.sendGetStartedEmails(requestData).catch((err) => {
-        console.error(
-          "Failed to send get started emails:",
-          err,
-        );
+        console.error("Failed to send get started emails:", err);
       });
 
       Swal.fire({

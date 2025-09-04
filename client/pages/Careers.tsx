@@ -203,16 +203,20 @@ export default function Careers() {
       if (error) throw error;
 
       // Send email notifications in background
-      emailService.sendGetStartedEmails({
-        first_name: resumeFormData.fullName.split(' ')[0] || resumeFormData.fullName,
-        last_name: resumeFormData.fullName.split(' ').slice(1).join(' ') || '',
-        email: resumeFormData.email,
-        phone: resumeFormData.phone,
-        message: `Resume submitted for ${resumeFormData.positionInterested}. Skills: ${resumeFormData.skills}. ${resumeFormData.coverLetter ? 'Cover Letter: ' + resumeFormData.coverLetter : ''}`,
-        created_at: new Date().toISOString(),
-      }).catch((err) => {
-        console.error("Failed to send resume upload emails:", err);
-      });
+      emailService
+        .sendGetStartedEmails({
+          first_name:
+            resumeFormData.fullName.split(" ")[0] || resumeFormData.fullName,
+          last_name:
+            resumeFormData.fullName.split(" ").slice(1).join(" ") || "",
+          email: resumeFormData.email,
+          phone: resumeFormData.phone,
+          message: `Resume submitted for ${resumeFormData.positionInterested}. Skills: ${resumeFormData.skills}. ${resumeFormData.coverLetter ? "Cover Letter: " + resumeFormData.coverLetter : ""}`,
+          created_at: new Date().toISOString(),
+        })
+        .catch((err) => {
+          console.error("Failed to send resume upload emails:", err);
+        });
 
       Swal.fire({
         title: "Resume Submitted!",

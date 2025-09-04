@@ -1,7 +1,7 @@
 // Client-side service for sending email notifications
 // This communicates with the server email endpoints
 
-const baseUrl = '/api/email';
+const baseUrl = "/api/email";
 
 interface ContactData {
   name: string;
@@ -55,23 +55,23 @@ class EmailService {
   async sendContactEmails(data: ContactData): Promise<boolean> {
     try {
       const response = await fetch(`${baseUrl}/contact`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
       const result: EmailResponse = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(result.error || `HTTP ${response.status}`);
       }
 
-      console.log('✅ Contact emails sent:', result.message);
+      console.log("✅ Contact emails sent:", result.message);
       return result.sent ?? false;
     } catch (error) {
-      console.error('❌ Failed to send contact emails:', error);
+      console.error("❌ Failed to send contact emails:", error);
       return false;
     }
   }
@@ -79,23 +79,23 @@ class EmailService {
   async sendJobApplicationEmails(data: JobApplicationData): Promise<boolean> {
     try {
       const response = await fetch(`${baseUrl}/job-application`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
       const result: EmailResponse = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(result.error || `HTTP ${response.status}`);
       }
 
-      console.log('✅ Job application emails sent:', result.message);
+      console.log("✅ Job application emails sent:", result.message);
       return result.sent ?? false;
     } catch (error) {
-      console.error('❌ Failed to send job application emails:', error);
+      console.error("❌ Failed to send job application emails:", error);
       return false;
     }
   }
@@ -103,23 +103,23 @@ class EmailService {
   async sendGetStartedEmails(data: GetStartedData): Promise<boolean> {
     try {
       const response = await fetch(`${baseUrl}/get-started`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
       const result: EmailResponse = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(result.error || `HTTP ${response.status}`);
       }
 
-      console.log('✅ Get started emails sent:', result.message);
+      console.log("✅ Get started emails sent:", result.message);
       return result.sent ?? false;
     } catch (error) {
-      console.error('❌ Failed to send get started emails:', error);
+      console.error("❌ Failed to send get started emails:", error);
       return false;
     }
   }
@@ -128,14 +128,14 @@ class EmailService {
     try {
       const response = await fetch(`${baseUrl}/status`);
       const result: EmailStatusResponse = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(result.error || `HTTP ${response.status}`);
       }
 
       return result.data?.configured ?? false;
     } catch (error) {
-      console.error('❌ Failed to check email service status:', error);
+      console.error("❌ Failed to check email service status:", error);
       return false;
     }
   }

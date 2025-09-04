@@ -74,7 +74,6 @@ export function createServer() {
   app.delete("/api/jobs/:id", deleteJob);
   app.patch("/api/jobs/:id/status", updateJobStatus);
 
-
   // Email notification routes
   app.post("/api/email/contact", sendContactEmails);
   app.post("/api/email/job-application", sendJobApplicationEmails);

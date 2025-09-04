@@ -8,10 +8,10 @@ interface EmailStatusWidgetProps {
   totalGetStarted: number;
 }
 
-export default function EmailStatusWidget({ 
-  totalContacts, 
-  totalApplications, 
-  totalGetStarted 
+export default function EmailStatusWidget({
+  totalContacts,
+  totalApplications,
+  totalGetStarted,
 }: EmailStatusWidgetProps) {
   const [isConfigured, setIsConfigured] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(true);
@@ -46,14 +46,14 @@ export default function EmailStatusWidget({
 
   const getStatusText = () => {
     if (loading) return "Checking email service...";
-    return isConfigured 
-      ? "Email notifications are working" 
+    return isConfigured
+      ? "Email notifications are working"
       : "Email service not configured";
   };
 
   const getStatusDescription = () => {
     if (loading) return "Please wait...";
-    return isConfigured 
+    return isConfigured
       ? "Form submissions will send emails to HR and confirmations to users."
       : "Configure EMAIL_USER and EMAIL_PASSWORD environment variables to enable email notifications.";
   };
@@ -65,7 +65,9 @@ export default function EmailStatusWidget({
           <Mail className="w-8 h-8 text-tech-blue" />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-foreground">Email Notifications</h3>
+          <h3 className="text-xl font-bold text-foreground">
+            Email Notifications
+          </h3>
           <p className="text-foreground/70">Form submission email status</p>
         </div>
       </div>
@@ -76,23 +78,33 @@ export default function EmailStatusWidget({
           {getStatusIcon()}
           <div>
             <p className="font-medium text-foreground">{getStatusText()}</p>
-            <p className="text-sm text-foreground/70">{getStatusDescription()}</p>
+            <p className="text-sm text-foreground/70">
+              {getStatusDescription()}
+            </p>
           </div>
         </div>
 
         {/* Statistics */}
         <div className="grid grid-cols-3 gap-4">
           <div className="text-center p-4 bg-background/50 rounded-lg">
-            <div className="text-2xl font-bold text-foreground">{totalContacts}</div>
+            <div className="text-2xl font-bold text-foreground">
+              {totalContacts}
+            </div>
             <div className="text-sm text-foreground/70">Contact Forms</div>
           </div>
           <div className="text-center p-4 bg-background/50 rounded-lg">
-            <div className="text-2xl font-bold text-foreground">{totalApplications}</div>
+            <div className="text-2xl font-bold text-foreground">
+              {totalApplications}
+            </div>
             <div className="text-sm text-foreground/70">Job Applications</div>
           </div>
           <div className="text-center p-4 bg-background/50 rounded-lg">
-            <div className="text-2xl font-bold text-foreground">{totalGetStarted}</div>
-            <div className="text-sm text-foreground/70">Get Started Requests</div>
+            <div className="text-2xl font-bold text-foreground">
+              {totalGetStarted}
+            </div>
+            <div className="text-sm text-foreground/70">
+              Get Started Requests
+            </div>
           </div>
         </div>
 
